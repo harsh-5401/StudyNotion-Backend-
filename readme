@@ -1,0 +1,15 @@
+to setup backend/server install following
+
+1-npm i express
+2-npm i mongoose
+3-npm i dotenv
+4-npm i nodemon
+5-npm i cookie-parser
+6-npm i jsonwebtoken
+7-npm i nodemailer
+8-npm i otp-generator
+9-npm i bcrypt
+10-npm i razorpay
+11-npm i cloudinary
+12-npm i cors
+13-npm i express-fileupload
