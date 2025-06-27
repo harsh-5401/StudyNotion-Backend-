@@ -37,9 +37,9 @@ app.use(cookieparser());
 
 app.use(
     cors({
-        origin:["http://localhost:3000" , "https://685c1a151e51600008f3bf09--calm-buttercream-59e73e.netlify.app/"],
+        // origin:["http://localhost:3000" , "https://685c1a151e51600008f3bf09--calm-buttercream-59e73e.netlify.app/"],
         // origin:"http://localhost:3000",
-        // origin:true,
+        origin:true,
         credentials:true,
     })
 );
