@@ -10,7 +10,6 @@ const contactroutes= require("./routes/contact");
 
 const dbconnect=require("./config/database");
 const cookieparser=require("cookie-parser");
-
 // we want our backend to entertain the requests of frontend
 // thats why we use cors
 const cors=require("cors");
@@ -18,7 +17,7 @@ const cors=require("cors");
 const dotenv=require("dotenv");
 const fileupload = require("express-fileupload");
 const cloudinaryconnect = require("./config/cloudinary");
-const { authentication, isadmin } = require("./middleware/authentication");
+// const { authentication, isadmin } = require("./middleware/authentication");
 
 dotenv.config();
 const PORT=process.env.PORT  || 4000;
@@ -35,12 +34,16 @@ cloudinaryconnect();
 
 app.use(express.json());
 app.use(cookieparser());
+
 app.use(
     cors({
-        origin:"http://localhost:3000",
-
+        origin:["http://localhost:3000" , "https://685c1a151e51600008f3bf09--calm-buttercream-59e73e.netlify.app/"],
+        // origin:"http://localhost:3000",
+        // origin:true,
+        credentials:true,
     })
 );
+
 
 app.use(
     fileupload({
@@ -58,6 +61,12 @@ app.use("/api/v1/payment" , paymentroutes);
 app.use("/api/v1/" , contactroutes);
 
 
+// app.get("/admin" , authentication , isadmin  , (req,res)=> {
+//     res.status(200).json({
+//         success:true,
+//         message:"welcone to admin route"
+//     })
+// });
 
 // deafult route
 app.get("/" , (req, res)=>{

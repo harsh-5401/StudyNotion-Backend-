@@ -1,5 +1,5 @@
 const jwt=require("jsonwebtoken");
-const User=require("../models/user");
+// const User=require("../models/user");
 require("dotenv").config();
 
 // auth
@@ -7,10 +7,10 @@ require("dotenv").config();
 async function authentication(req,res,next){
     
     try{
-        console.log("inside AUTHENTICATION MIDDLEWARE");
+        // console.log("inside AUTHENTICATION MIDDLEWARE");
         // extract token
         const token=req.cookies.token|| req.body.token|| req.header("Authorisation").replace("Bearer " ,  "");
-        console.log("PRINTING TOKEN" , token)
+        // console.log("PRINTING TOKEN" , token)
 
         if(!token){
             return res.status(401).json({
@@ -22,14 +22,14 @@ async function authentication(req,res,next){
         // verify token
         try{
             const decode=jwt.verify(token, process.env.JWT_SECRET);
-            console.log("decode is " , decode);
+            // console.log("decode is " , decode);
             // push payload into req of user
             req.user=decode;
             // console.log(req);
 
         } catch(error) {
 
-            // verification iissue
+            // verification issues
             console.log(error);
             return res.status(401).json({
                 success:false,
@@ -82,7 +82,7 @@ async function isinstructor(req,res,next){
         if(req.user.role!=="Instructor"){
             return res.status(401).json({
                 success:false,
-                message:"this is route for instructor are you are not instructor"
+                message:"this is route for instructor and you are not instructor"
             });
         }
 
@@ -121,7 +121,10 @@ async function isadmin(req,res,next){
             message:"user role cannot be verified"
         });
         
+        
     }
 }
 
-module.exports={authentication , isadmin , isinstructor , isstudent   };
+
+
+module.exports={authentication , isadmin , isinstructor , isstudent};

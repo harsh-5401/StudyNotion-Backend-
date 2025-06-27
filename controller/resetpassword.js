@@ -15,7 +15,7 @@ async function resetpasswordtoken(req,res){
         // validate email
         // check user for this email
         const user=await User.findOne({email:email});
-        
+        // console.log("user is =" , user  );
         if(!user){
             return res.json({
                 success:false,
@@ -62,7 +62,8 @@ async function resetpasswordtoken(req,res){
 async function resetpassword(req,res){
     try{
         // fecth data
-       
+        // we get feching token from body as it is put inside request by frontend
+        // we can also fetch token fom the url as we are creating url with help of token
         const{password , confirmpassword , token} = req.body;
         // validation
         if(password!==confirmpassword){

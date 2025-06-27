@@ -62,8 +62,10 @@ async function sendotp(req,res){
             email:email,
             otpvalue:otp
         });
-        console.log("otpbody=>" , otpbody);
-       
+        // console.log("otpbody=>" , otpbody);
+        // console.log("Result is Generate OTP Func")
+        // console.log("OTP", otp)
+        // console.log("Result", result)
 
         // return succesful response
 
@@ -116,9 +118,9 @@ async function signup(req,res){
     }
 
     // check if user exist or not
-    
+    // console.log("email is " , email);
     const existinguser=await User.findOne({email:email});
-    console.log("existing user is=" , existinguser);
+    // console.log("existing user is=" , existinguser);
     if(existinguser){
         return res.status(400).json({
             success:false,
@@ -128,7 +130,7 @@ async function signup(req,res){
 
     // find most recent otp for user
     const recentotp=await Otpmodel.find({email:email}).sort({createdAt :-1}).limit(1);
-    console.log("recent otp=" , recentotp);
+    // console.log("recent otp=" , recentotp);
 
     // validate otp
     if(recentotp.length === 0) {
@@ -168,7 +170,8 @@ async function signup(req,res){
         // contactnumber,
         password:hashedpassword,
         accounttype,
-        
+        // account detail contain id of profile so we need to creat profile first in db
+        // and then assign its id to additonal details 
         additionalDetails:profiledetails._id,
         // this api is used to generate image automatically
         image:`https://api.dicebear.com/5.x/initials/svg?seed=${firstname}-${lastname}`,
@@ -222,7 +225,7 @@ async function login(req, res){
             });
         }
 
-        console.log("registered user is =>" , user);
+        // console.log("registered user is =>" , user);
 
         // generate jwt token after password matching 
 
@@ -245,7 +248,7 @@ async function login(req, res){
             const options={
                 // expires in 3 days
                 expiresIn: new Date(Date.now() + 3*24*60*60*100),
-                httpOnly:true
+                httpOnly:true 
             }
 
             res.cookie("token" , token , options).status(200).json({

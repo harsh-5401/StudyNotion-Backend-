@@ -51,7 +51,7 @@ async function updatesection(req,res){
     try{
         // fetch new section name
         const {sectionname , sectionid , courseid}=req.body;
-        console.log("courseid is " , courseid)
+        // console.log("courseid is " , courseid)
 
         // validate
         if(!sectionname || !sectionid){
@@ -99,7 +99,7 @@ async function deletesection(req,res){
         // const sectionid=req.params;
 
         const{sectionid , courseid} = req.body
-        console.log("section id and course id is " , sectionid , " " , courseid)
+        // console.log("section id and course id is " , sectionid , " " , courseid)
         
 
         // validate
@@ -118,11 +118,17 @@ async function deletesection(req,res){
             await subsectionmodel.findByIdAndDelete(ssid);
         });
 
-        console.log('Subsections within the section deleted')
+        // console.log('Subsections within the section deleted')
 
-        
+        //  TODO :remove section id from coursecontent array  schema
+        // DO we need to delete entry from course schema at time of testing
+
+        //NOTE: Due to cascading deletion, Mongoose automatically triggers the built-in middleware to perform a cascading delete for all the referenced 
+        //SubSection documents. DOUBTFUL!
+
+        //From course, courseContent the section gets automatically deleted due to cascading delete feature
         await sectionmodel.findByIdAndDelete(sectionid);
-        console.log('Section deleted')
+        // console.log('Section deleted')
 
         const updatedCourse = await coursemodel.findById(courseid)
           .populate({

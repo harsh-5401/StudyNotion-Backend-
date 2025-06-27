@@ -3,7 +3,9 @@ require("dotenv").config();
 
 async function mailsender(email , title , body){
     try{
-        
+        // console.log("INSIDE MAILSENDER");
+        // console.log("body is =" , body);
+        // console.log("email and title " , email ," " , title)
         //creat transporter
         const transporter=nodemailer.createTransport({
             host:process.env.MAIL_HOST,

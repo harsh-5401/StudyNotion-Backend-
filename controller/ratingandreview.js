@@ -1,6 +1,6 @@
 const ratingandreviewmodel=require("../models/ratingandreview");
 const coursemodel=require("../models/course");
-
+// const { default: mongoose } = require("mongoose");
 const mongoose = require("mongoose")
 
 
@@ -8,12 +8,12 @@ async function createratingandreview(req,res){
     try{
         // get user id as user is already logged in
         const userid=req.user.id;
-        console.log("userid INSIDE=" , userid);
+        // console.log("userid INSIDE=" , userid); 
         
         // get other data
         const{courseid , rating , review}=req.body;
-        console.log("COURSE ID INSIDE=", courseid);
-        console.log("rating and review is" , rating , " " , review);
+        // console.log("COURSE ID INSIDE=", courseid);
+        // console.log("rating and review is" , rating , " " , review);
 
 
         // check if user is enrolled or not
@@ -59,7 +59,7 @@ async function createratingandreview(req,res){
             {new:true}
         )
 
-        console.log("updatedcoursedetails = " , updatedcourseddetails);
+        // console.log("updatedcoursedetails = " , updatedcourseddetails);
 
         // return response
 
@@ -81,7 +81,15 @@ async function createratingandreview(req,res){
 }
 
 
-
+// average rating useful code
+// RatingAndReview.find({ course: courseId })
+//   .populate('user') // Optional: To populate the user information if needed
+//   .then(reviews => {
+//     console.log('Reviews:', reviews);
+//   })
+//   .catch(error => {
+//     console.error('Error fetching reviews:', error);
+//   });
 
 async function getAverageRating(req,res){
     try{

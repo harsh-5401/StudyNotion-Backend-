@@ -1,13 +1,24 @@
-
+// Import the required modules
 const express = require("express")
 const router = express.Router()
 
-
+// Import the Controllers
 
 // Course Controllers Import
 
 const{creatcourse , getallcourse , coursedetails , editcourse , getInstructorCourses , deleteCourse , getFullCourseDetails  } = require("../controller/course");
+// const {getInstructorCourses} = require("../controller/course")
 
+// const {
+//   createCourse,
+//   getAllCourses,
+//   getCourseDetails,
+//   getFullCourseDetails,
+//   editCourse,
+//   getInstructorCourses,
+//   deleteCourse,
+// } = require("../controllers/Course")
+ 
 
 // Tags Controllers Import
 
@@ -15,6 +26,11 @@ const{creatcourse , getallcourse , coursedetails , editcourse , getInstructorCou
 
 const {categorypageDetails , showallcategory , createcategory}=require("../controller//category");
 
+// const {
+//   showAllCategories,
+//   createCategory,
+//   categoryPageDetails,
+// } = require("../controllers/Category")
 
 // Sections Controllers Import
 const {

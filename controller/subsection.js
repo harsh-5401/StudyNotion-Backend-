@@ -8,11 +8,13 @@ require("dotenv").config();
     try{
         // fetch section name
         const {sectionid, title , timeduration , description}=req.body;
+        // console.log("printing");
+        // console.log(sectionid , title , timeduration , description);
         const {courseid}= req.body;
 
         // extract file/video
         const video=req.files.video;
-        console.log("video is" , video)
+        // console.log("video is" , video)
 
         // validation
         if(!sectionid || !title  || !description || !video){
@@ -62,7 +64,7 @@ require("dotenv").config();
                                                     })
                                                     .exec();
 
-        console.log("updated course in delte subsection is" , updatedCourse)
+        // console.log("updated course in delte subsection is" , updatedCourse)
         
        
         // return response
@@ -94,13 +96,13 @@ async function updatesubsection(req,res){
         const {sectionid , subsectionid , title , description}=req.body;
         const {courseid}= req.body;
 
-        console.log("inside update subsection")
-        console.log("req is" , req)
-        console.log("courseid " , courseid)
-        console.log("sectionid " , sectionid)
-        console.log("subsectionid " , subsectionid)
-        console.log("title " , title)
-        console.log("description " , description)
+        // console.log("inside update subsection")
+        // console.log("req is" , req)
+        // console.log("courseid " , courseid)
+        // console.log("sectionid " , sectionid)
+        // console.log("subsectionid " , subsectionid)
+        // console.log("title " , title)
+        // console.log("description " , description)
         
         // validate
         if(!courseid || !subsectionid){
@@ -167,7 +169,7 @@ async function updatesubsection(req,res){
                                                     })
                                                     .exec();
 
-        console.log("updated course in update subsection is" , updatedCourse)
+        // console.log("updated course in update subsection is" , updatedCourse)
         // return response
 
         return res.status(200).json({
@@ -195,10 +197,10 @@ async function deletesubsection(req,res){
         // assuming that we are sedning it in params
         const {sectionid , subsectionid} = req.body;
         const {courseid}= req.body;
-        console.log("inside delete subsection")
-        console.log("courseid " , courseid)
-        console.log("sectionid " , sectionid)
-        console.log("subsectionid " , subsectionid)
+        // console.log("inside delete subsection")
+        // console.log("courseid " , courseid)
+        // console.log("sectionid " , sectionid)
+        // console.log("subsectionid " , subsectionid)
 
         // removing subsection id from section
         await sectionmodel.findByIdAndUpdate(
@@ -249,7 +251,7 @@ async function deletesubsection(req,res){
                                                     })
                                                     .exec();
 
-        console.log("updated course in delete subsection is" , updatedCourse)
+        // console.log("updated course in delete subsection is" , updatedCourse)
 
         // return response
 

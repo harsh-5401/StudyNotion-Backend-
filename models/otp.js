@@ -41,11 +41,11 @@ async function sendverificationemail(email , otp) {
     try{
 
         const mailresponse=await mailsender(email , "verification email from study Notion" , otp);
-        console.log("mailresponse=" , mailresponse);
+        // console.log("mailresponse=" , mailresponse);        
 
     } catch(error){
         console.log(error);
-        console.log("error occured while sending mail");
+        // console.log("error occured while sending mail");
         throw error;
 
     }
